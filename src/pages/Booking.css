@@ -1,0 +1,110 @@
+.booking-container {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.booking-header {
+  margin-bottom: 2rem;
+  position: sticky;
+  top: 80px; /* Below navbar */
+  z-index: 90;
+}
+
+.booking-content {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.cars-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.no-cars-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem;
+  background-color: var(--bg-surface);
+  border-radius: 12px;
+  border: 1px dashed var(--border-color);
+}
+
+.no-cars-message h3 {
+  margin-bottom: 0.5rem;
+}
+
+.no-cars-message p {
+  color: var(--text-muted);
+}
+
+.filters-sidebar {
+  width: 320px;
+  background-color: var(--bg-surface);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  position: sticky;
+  top: 180px; /* Below navbar and search widget */
+}
+
+.filter-group {
+  margin-bottom: 1rem;
+}
+
+.filter-group h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.filter-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filter-badge {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+  border: 1px solid transparent;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.filter-badge:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-main);
+}
+
+.filter-badge.active {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: var(--text-main);
+  border-color: #555;
+}
+
+.filter-divider {
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 1.5rem 0;
+}
+
+.clear-filters-btn {
+  width: 100%;
+  padding: 1rem;
+  background-color: #444;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-top: 1rem;
+  transition: background-color 0.2s;
+}
+
+.clear-filters-btn:hover {
+  background-color: #555;
+}

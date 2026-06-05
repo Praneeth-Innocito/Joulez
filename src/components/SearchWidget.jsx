@@ -151,7 +151,9 @@ const SearchWidget = () => {
                 value={startTime}
                 onChange={(e) => {
                   setStartTime(e.target.value);
-                  if (e.target.value) focusAndOpen(endDateRef);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') focusAndOpen(endDateRef);
                 }}
               />
             </div>
@@ -171,6 +173,9 @@ const SearchWidget = () => {
                 ref={endTimeRef}
                 value={endTime}
                 onChange={(e) => setEndTime(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') handleSearch();
+                }}
               />
             </div>
           </div>

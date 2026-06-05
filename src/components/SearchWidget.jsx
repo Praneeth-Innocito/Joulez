@@ -20,6 +20,9 @@ const SearchWidget = () => {
   const startTimeRef = useRef(null);
   const endDateRef = useRef(null);
   const endTimeRef = useRef(null);
+  
+  const startTimeTimerRef = useRef(null);
+  const endTimeTimerRef = useRef(null);
 
   const focusAndOpen = (ref) => {
     if (ref.current) {
@@ -151,9 +154,21 @@ const SearchWidget = () => {
                 value={startTime}
                 onChange={(e) => {
                   setStartTime(e.target.value);
+                  if (startTimeTimerRef.current) clearTimeout(startTimeTimerRef.current);
+                  if (e.target.value) {
+                    startTimeTimerRef.current = setTimeout(() => {
+                      focusAndOpen(endDateRef);
+                    }, 1200);
+                  }
+                }}
+                onBlur={() => {
+                  if (startTimeTimerRef.current) clearTimeout(startTimeTimerRef.current);
                 }}
                 onKeyDown={(e) => {
-                  if (e.key === 'Enter') focusAndOpen(endDateRef);
+                  if (e.key === 'Enter') {
+                    if (startTimeTimerRef.current) clearTimeout(startTimeTimerRef.current);
+                    focusAndOpen(endDateRef);
+                  }
                 }}
               />
             </div>
@@ -172,9 +187,23 @@ const SearchWidget = () => {
                 type="time" 
                 ref={endTimeRef}
                 value={endTime}
-                onChange={(e) => setEndTime(e.target.value)}
+                onChange={(e) => {
+                  setEndTime(e.target.value);
+                  if (endTimeTimerRef.current) clearTimeout(endTimeTimerRef.current);
+                  if (e.target.value) {
+                    endTimeTimerRef.current = setTimeout(() => {
+                      handleSearch();
+                    }, 1200);
+                  }
+                }}
+                onBlur={() => {
+                  if (endTimeTimerRef.current) clearTimeout(endTimeTimerRef.current);
+                }}
                 onKeyDown={(e) => {
-                  if (e.key === 'Enter') handleSearch();
+                  if (e.key === 'Enter') {
+                    if (endTimeTimerRef.current) clearTimeout(endTimeTimerRef.current);
+                    handleSearch();
+                  }
                 }}
               />
             </div>

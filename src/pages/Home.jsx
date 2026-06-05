@@ -7,7 +7,7 @@ const Home = () => {
     <div className="home-container">
       <div className="hero-section">
         <div className="hero-overlay"></div>
-        <img src="/images/hero_bg.png" alt="Electric vehicle driving through forest" className="hero-bg" />
+        <img src={`${import.meta.env.BASE_URL}images/hero_bg.png`} alt="Electric vehicle driving through forest" className="hero-bg" />
         
         <div className="hero-content">
           <h1 className="hero-title">EV Rentals</h1>

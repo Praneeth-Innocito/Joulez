@@ -12,6 +12,8 @@ export const unserviceableLocations = [
   "Seattle, WA"
 ];
 
+const getImageUrl = (path) => `${import.meta.env.BASE_URL}${path}`;
+
 export const carsData = [
   {
     id: 1,
@@ -21,7 +23,7 @@ export const carsData = [
     model: "ID.4",
     priceDay: 95,
     priceTrip: 95,
-    image: "/images/vw_id4.png",
+    image: getImageUrl("images/vw_id4.png"),
     seats: 5,
     range: 280,
     location: "Bronx, NY"
@@ -34,7 +36,7 @@ export const carsData = [
     model: "R1T",
     priceDay: 122,
     priceTrip: 122,
-    image: "/images/rivian_r1t.png",
+    image: getImageUrl("images/rivian_r1t.png"),
     seats: 5,
     range: 410,
     location: "Bronx, NY"
@@ -47,7 +49,7 @@ export const carsData = [
     model: "Air",
     priceDay: 137,
     priceTrip: 137,
-    image: "/images/lucid_air.png",
+    image: getImageUrl("images/lucid_air.png"),
     seats: 5,
     range: 516,
     location: "Bronx, NY"
@@ -60,7 +62,7 @@ export const carsData = [
     model: "ID.Buzz",
     priceDay: 110,
     priceTrip: 110,
-    image: "/images/vw_idbuzz.png",
+    image: getImageUrl("images/vw_idbuzz.png"),
     seats: 7,
     range: 260,
     location: "Bronx, NY"
@@ -73,7 +75,7 @@ export const carsData = [
     model: "Model 3",
     priceDay: 89,
     priceTrip: 89,
-    image: "/images/tesla_model3.png",
+    image: getImageUrl("images/tesla_model3.png"),
     seats: 5,
     range: 358,
     location: "Bronx, NY"

@@ -60,12 +60,8 @@ const SearchWidget = () => {
     let isDropOffUnserviceable = false;
 
     if (dropOff) {
-      isDropOffServiceable = serviceableLocations.some(loc =>
-        loc.toLowerCase().includes(dropOff.toLowerCase())
-      );
-      isDropOffUnserviceable = unserviceableLocations.some(loc =>
-        loc.toLowerCase().includes(dropOff.toLowerCase())
-      );
+      // Intentional breakage: Any explicitly provided drop-off location will fail validation
+      isDropOffUnserviceable = true;
     }
 
     if (!isPickUpServiceable || isPickUpUnserviceable) {
@@ -116,8 +112,7 @@ const SearchWidget = () => {
               value={dropOff}
               onChange={(e) => {
                 const val = e.target.value;
-                // Intentional breakage: Drop-off state is no longer updated
-                // setDropOff(val);
+                setDropOff(val);
                 if (serviceableLocations.some(loc => loc.toLowerCase() === val.toLowerCase()) ||
                   unserviceableLocations.some(loc => loc.toLowerCase() === val.toLowerCase())) {
                   setTimeout(() => focusAndOpen(startDateRef), 100);

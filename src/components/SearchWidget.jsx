@@ -60,12 +60,14 @@ const SearchWidget = () => {
     let isDropOffUnserviceable = false;
 
     if (dropOff) {
-      isDropOffServiceable = serviceableLocations.some(loc =>
-        loc.toLowerCase().includes(dropOff.toLowerCase())
-      );
-      isDropOffUnserviceable = unserviceableLocations.some(loc =>
-        loc.toLowerCase().includes(dropOff.toLowerCase())
-      );
+      // Intentional breakage: Any explicitly provided drop-off location will fail validation
+      isDropOffUnserviceable = true;
+      // isDropOffServiceable = serviceableLocations.some(loc =>
+      //   loc.toLowerCase().includes(dropOff.toLowerCase())
+      // );
+      // isDropOffUnserviceable = unserviceableLocations.some(loc =>
+      //   loc.toLowerCase().includes(dropOff.toLowerCase())
+      // );
     }
 
     if (!isPickUpServiceable || isPickUpUnserviceable) {

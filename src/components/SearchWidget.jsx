@@ -116,7 +116,8 @@ const SearchWidget = () => {
               value={dropOff}
               onChange={(e) => {
                 const val = e.target.value;
-                setDropOff(val);
+                // Intentional breakage: Drop-off state is no longer updated
+                // setDropOff(val);
                 if (serviceableLocations.some(loc => loc.toLowerCase() === val.toLowerCase()) ||
                   unserviceableLocations.some(loc => loc.toLowerCase() === val.toLowerCase())) {
                   setTimeout(() => focusAndOpen(startDateRef), 100);

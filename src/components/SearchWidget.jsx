@@ -15,12 +15,12 @@ const SearchWidget = () => {
   const [endDate, setEndDate] = useState(searchState.endDate || '');
   const [endTime, setEndTime] = useState(searchState.endTime || '');
   const [error, setError] = useState('');
-  
+
   const startDateRef = useRef(null);
   const startTimeRef = useRef(null);
   const endDateRef = useRef(null);
   const endTimeRef = useRef(null);
-  
+
   const startTimeTimerRef = useRef(null);
   const endTimeTimerRef = useRef(null);
 
@@ -41,17 +41,17 @@ const SearchWidget = () => {
 
   const handleSearch = () => {
     setError('');
-    
+
     if (!pickUp) {
       setError('Please enter a pick-up location');
       return;
     }
 
     // Validation logic for PickUp
-    const isPickUpServiceable = serviceableLocations.some(loc => 
+    const isPickUpServiceable = serviceableLocations.some(loc =>
       loc.toLowerCase().includes(pickUp.toLowerCase())
     );
-    const isPickUpUnserviceable = unserviceableLocations.some(loc => 
+    const isPickUpUnserviceable = unserviceableLocations.some(loc =>
       loc.toLowerCase().includes(pickUp.toLowerCase())
     );
 
@@ -60,10 +60,10 @@ const SearchWidget = () => {
     let isDropOffUnserviceable = false;
 
     if (dropOff) {
-      isDropOffServiceable = serviceableLocations.some(loc => 
+      isDropOffServiceable = serviceableLocations.some(loc =>
         loc.toLowerCase().includes(dropOff.toLowerCase())
       );
-      isDropOffUnserviceable = unserviceableLocations.some(loc => 
+      isDropOffUnserviceable = unserviceableLocations.some(loc =>
         loc.toLowerCase().includes(dropOff.toLowerCase())
       );
     }
@@ -85,14 +85,14 @@ const SearchWidget = () => {
     <div className="search-widget-container">
       {error && <div className="search-error">{error}</div>}
       <div className="search-widget">
-        
+
         <div className="search-field">
           <label>Pick Up</label>
           <div className="input-group">
             <MapPin size={18} color="#a0a0a0" />
-            <input 
-              type="text" 
-              placeholder="Enter location (e.g., Bronx, NY)" 
+            <input
+              type="text"
+              placeholder="Enter location (e.g., Bronx, NY)"
               value={pickUp}
               onChange={(e) => setPickUp(e.target.value)}
               list="serviceable-locations"
@@ -110,15 +110,15 @@ const SearchWidget = () => {
           <label>Drop Off</label>
           <div className="input-group">
             <MapPin size={18} color="#a0a0a0" />
-            <input 
-              type="text" 
-              placeholder="Same as pick up" 
+            <input
+              type="text"
+              placeholder="Enter drop-off location"
               value={dropOff}
               onChange={(e) => {
                 const val = e.target.value;
                 setDropOff(val);
-                if (serviceableLocations.some(loc => loc.toLowerCase() === val.toLowerCase()) || 
-                    unserviceableLocations.some(loc => loc.toLowerCase() === val.toLowerCase())) {
+                if (serviceableLocations.some(loc => loc.toLowerCase() === val.toLowerCase()) ||
+                  unserviceableLocations.some(loc => loc.toLowerCase() === val.toLowerCase())) {
                   setTimeout(() => focusAndOpen(startDateRef), 100);
                 }
               }}
@@ -139,8 +139,8 @@ const SearchWidget = () => {
           <div className="date-inputs">
             <div className="input-group">
               <Calendar size={18} color="#a0a0a0" />
-              <input 
-                type="date" 
+              <input
+                type="date"
                 ref={startDateRef}
                 value={startDate}
                 onChange={(e) => {
@@ -148,8 +148,8 @@ const SearchWidget = () => {
                   if (e.target.value) focusAndOpen(startTimeRef);
                 }}
               />
-              <input 
-                type="time" 
+              <input
+                type="time"
                 ref={startTimeRef}
                 value={startTime}
                 onChange={(e) => {
@@ -174,8 +174,8 @@ const SearchWidget = () => {
             </div>
             <span className="arrow">→</span>
             <div className="input-group">
-              <input 
-                type="date" 
+              <input
+                type="date"
                 ref={endDateRef}
                 value={endDate}
                 onChange={(e) => {
@@ -183,8 +183,8 @@ const SearchWidget = () => {
                   if (e.target.value) focusAndOpen(endTimeRef);
                 }}
               />
-              <input 
-                type="time" 
+              <input
+                type="time"
                 ref={endTimeRef}
                 value={endTime}
                 onChange={(e) => {

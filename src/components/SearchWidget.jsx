@@ -114,7 +114,7 @@ const SearchWidget = () => {
             <MapPin size={18} color="#a0a0a0" />
             <input
               type="text"
-              placeholder="Enter Drop off location"
+              placeholder="Pick off point"
               value={dropOff}
               onChange={(e) => {
                 const val = e.target.value;

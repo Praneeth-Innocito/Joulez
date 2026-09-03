@@ -1,23 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useState } from 'react';
 import SearchWidget from '../components/SearchWidget';
 import CarCard from '../components/CarCard';
 import { carsData, vehicleTypes, vehicleBrands, vehicleModels } from '../data';
 import './Booking.css';
 
 const Booking = () => {
-  const location = useLocation();
-  const searchState = location.state || {}; // { pickUp, dropOff, startDate, endDate }
-
-  const [filteredCars, setFilteredCars] = useState(carsData);
-  
   // Filter states
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedModels, setSelectedModels] = useState([]);
 
-  // Apply filters whenever state changes
-  useEffect(() => {
+  const getFilteredCars = () => {
     let result = carsData;
 
     if (selectedTypes.length > 0) {
@@ -32,8 +25,10 @@ const Booking = () => {
       result = result.filter(car => selectedModels.includes(car.model));
     }
 
-    setFilteredCars(result);
-  }, [selectedTypes, selectedBrands, selectedModels]);
+    return result;
+  };
+
+  const filteredCars = getFilteredCars();
 
   const toggleFilter = (list, setList, value) => {
     if (list.includes(value)) {

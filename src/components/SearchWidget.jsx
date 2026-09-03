@@ -1,12 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Search, MapPin, Calendar } from 'lucide-react';
 import { serviceableLocations, unserviceableLocations } from '../data';
 import './SearchWidget.css';
 
+const getToday = () => {
+  const today = new Date();
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const day = String(today.getDate()).padStart(2, '0');
+  return `${today.getFullYear()}-${month}-${day}`;
+};
+
 const SearchWidget = () => {
   const location = useLocation();
   const searchState = location.state || {};
+  const today = getToday();
 
   const [pickUp, setPickUp] = useState(searchState.pickUp || '');
   const [dropOff, setDropOff] = useState(searchState.dropOff || '');
@@ -31,7 +39,7 @@ const SearchWidget = () => {
         if (typeof ref.current.showPicker === 'function') {
           ref.current.showPicker();
         }
-      } catch (e) {
+      } catch {
         // Ignore if showPicker fails
       }
     }
@@ -144,6 +152,7 @@ const SearchWidget = () => {
               <input
                 type="date"
                 ref={startDateRef}
+                min={today}
                 value={startDate}
                 onChange={(e) => {
                   setStartDate(e.target.value);
@@ -179,6 +188,7 @@ const SearchWidget = () => {
               <input
                 type="date"
                 ref={endDateRef}
+                min={today}
                 value={endDate}
                 onChange={(e) => {
                   setEndDate(e.target.value);

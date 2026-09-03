@@ -1,4 +1,3 @@
-import React from 'react';
 import { Users, Zap, MapPin } from 'lucide-react';
 import './CarCard.css';
 
